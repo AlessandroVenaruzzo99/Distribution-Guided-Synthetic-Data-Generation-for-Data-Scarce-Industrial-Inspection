@@ -13,11 +13,8 @@ Our framework addresses the challenge of data scarcity in industrial quality ins
 To set up the environment, we recommend using Conda:
 
 ```bash
-git clone https://github.com/[ANONYMOUS_USER]/distribution-guided-gen.git](https://github.com/AlessandroVenaruzzo99/Distribution-Guided-Synthetic-Data-Generation-for-Data-Scarce-Industrial-Inspection.git)
-cd distribution-guided-gen
-conda create -n ind-inspection python=3.9
-conda activate ind-inspection
-pip install -r requirements.txt
+(https://github.com/AlessandroVenaruzzo99/Distribution-Guided-Synthetic-Data-Generation-for-Data-Scarce-Industrial-Inspection.git)
+
 ```
 📊 Data Availability & Reproducibility
 
