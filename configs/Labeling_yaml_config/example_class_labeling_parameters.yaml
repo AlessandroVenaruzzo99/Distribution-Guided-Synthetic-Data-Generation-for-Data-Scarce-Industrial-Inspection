@@ -1,0 +1,11 @@
+# Template for the optional rule-based auto-labeling step (src/labeling_raw_data.py).
+# Copy it as <class_name>_labeling_parameters.yaml, where <class_name> is the name of the class folder.
+# If no file exists for a class, a default one is created automatically.
+class_name: example_class
+class_id: 0
+min_area: 1800          # min contour area (px)
+max_area: 7500          # max contour area (px)
+min_aspect_ratio: 0.001
+max_aspect_ratio: 2.4
+w_eps: 0.9              # max box width as a fraction of the image width
+h_eps: 0.9              # max box height as a fraction of the image height

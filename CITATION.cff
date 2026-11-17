@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the associated article."
+title: "Distribution-Guided Synthetic Data Generation for Data-Scarce Industrial Inspection"
+type: software
+authors:
+  - family-names: Venaruzzo
+    given-names: Alessandro
+    affiliation: "Department of Computer Science, University of Verona, Italy"
+  - family-names: Beyan
+    given-names: Cigdem
+    affiliation: "Department of Computer Science, University of Verona, Italy"
+  - family-names: Cristani
+    given-names: Matteo
+    affiliation: "Department of Computer Science, University of Verona, Italy"
+repository-code: "https://github.com/AlessandroVenaruzzo99/Distribution-Guided-Synthetic-Data-Generation-for-Data-Scarce-Industrial-Inspection"
+license: MIT
+doi: "10.1007/s00170-026-19352-3"
+keywords:
+  - industrial object detection
+  - synthetic data generation
+  - distribution-guided synthetic data generation
+  - class imbalance
+  - data-scarce learning
+  - industrial inspection
+preferred-citation:
+  type: article
+  title: "Distribution-Guided Synthetic Data Generation for Data-Scarce Industrial Inspection"
+  authors:
+    - family-names: Venaruzzo
+      given-names: Alessandro
+    - family-names: Beyan
+      given-names: Cigdem
+    - family-names: Cristani
+      given-names: Matteo
+  journal: "The International Journal of Advanced Manufacturing Technology"
+  publisher:
+    name: Springer
+  status: in-press
+  doi: "10.1007/s00170-026-19352-3"
+  url: "https://doi.org/10.1007/s00170-026-19352-3"
