@@ -1,0 +1,14 @@
+# Core dependencies of the synthetic data generation pipeline and of the YOLO training/evaluation scripts.
+# Versions are the ones used for the experiments (Python 3.12).
+numpy==2.1.1
+opencv-python==4.11.0.86
+pandas==2.2.3
+scipy==1.15.2
+pillow==11.1.0
+PyYAML==6.0.2
+matplotlib==3.10.1
+seaborn==0.13.2
+tqdm==4.67.1
+torch==2.6.0
+torchvision==0.21.0
+ultralytics==8.3.97

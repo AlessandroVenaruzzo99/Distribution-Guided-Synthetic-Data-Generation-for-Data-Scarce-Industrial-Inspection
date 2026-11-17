@@ -1,0 +1,9 @@
+# Minimal dependencies for the unit tests (no torch / ultralytics needed: they are stubbed).
+numpy
+opencv-python-headless
+pandas
+scipy
+pillow
+PyYAML
+matplotlib
+pytest
