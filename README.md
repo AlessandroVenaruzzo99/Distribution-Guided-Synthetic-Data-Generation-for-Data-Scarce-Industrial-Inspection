@@ -39,9 +39,11 @@ Our framework addresses the challenge of data scarcity in industrial quality ins
 │   ├── evaluate_cv_performance.py    # Mean/std of the metrics across folds
 │   ├── class_avg_metrics.py          # Per-class mean AP helper
 │   ├── Plot_comparison_Seaborn.py    # Training curves (mean ± SD across folds) for several baselines
+│   ├── labeling_raw_data.py          # Optional: rule-based auto-labeling (YOLO boxes from contours)
+│   ├── utils_labeling.py             # Helpers for the optional auto-labeling step
 │   └── utils.py                      # Shared helpers (seeding, dataset building, k-fold split, metrics)
 ├── tests/                            # Lightweight CPU-only unit tests (no training)
-├── configs/                          # Generated data.yaml (git-ignored)
+├── configs/                          # Generated data.yaml + auto-labeling parameter template
 ├── data/                             # Dataset location (git-ignored, see below)
 ├── coco_dataset/, results/           # Generated per-fold datasets and training results (git-ignored)
 └── requirements.txt
@@ -72,6 +74,12 @@ data/
     └── stored/<class_name>/Image (N).txt               # YOLO labels: class cx cy w h (normalized)
 ```
 
+If `data/labels/stored` does not exist, `main_k-fold.py` runs the optional rule-based auto-labeling step
+(`labeling_raw_data.py`): it copies the class folders of `data/images/raw/<dataset_name>/` into `data/images/stored/` and
+derives YOLO boxes from object contours using the per-class parameters in
+`configs/Labeling_yaml_config/<class_name>_labeling_parameters.yaml` (see the example template).
+The annotations used for the paper were made manually; the auto-labeling step is only a convenience for new data.
+
 The open-access dataset used for the additional experiments (Manufacturing-Backlight) is available on
 [Roboflow Universe](https://universe.roboflow.com/alessandro-venaruzzo-4oaiw/manufacturing-backlight-dataset).
 
@@ -79,6 +87,9 @@ The open-access dataset used for the additional experiments (Manufacturing-Backl
 
 All experiment switches are at the top of `src/main_k-fold.py` (`copy_paste_augm`, `data_balancing`,
 `use_rfs_custom_method`, `use_oversampling`, `vanilla`, `adaptive_overlap_threshold`, `all_no_db_sych`, `detector`, ...).
+The defaults reproduce the full proposed configuration (random background selection, background and foreground
+augmentation, adaptive overlap thresholds, instance-level distribution control); set `use_rfs_custom_method = True`
+for the RFS baseline or `data_balancing = False` for the vanilla copy-paste / ablation runs.
 The generation hyper-parameters (target instances per class, number of bins, foreground/background augmentation
 options, overlap percentile) are defined at the top of the corresponding generation script.
 
@@ -111,4 +122,4 @@ shared due to industrial collaboration constraints BUT the similar alternative O
 
 ## ⚖️ License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License (see [LICENSE](LICENSE)).

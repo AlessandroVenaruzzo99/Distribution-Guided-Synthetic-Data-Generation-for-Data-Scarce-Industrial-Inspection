@@ -28,3 +28,7 @@ configs/data.yaml
 *.pt
 *.pth
 *.onnx
+
+# Per-class auto-labeling parameters (may contain confidential class names); only the template is versioned
+configs/Labeling_yaml_config/*
+!configs/Labeling_yaml_config/example_class_labeling_parameters.yaml

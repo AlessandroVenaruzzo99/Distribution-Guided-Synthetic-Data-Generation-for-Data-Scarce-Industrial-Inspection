@@ -12,13 +12,18 @@ from utils import *
 def main():
     """ K-fold Cross-Validation for YOLOv5 """
     
-    # Check that the annotated dataset is in place (see README, "Dataset layout")
+    # Check that the annotated dataset is in place (see README, "Dataset layout").
+    # If YOLO labels are missing, they are generated with the optional rule-based auto-labeling step.
     #   data/images/raw/<dataset_name>/<class_name>/*.jpg   -> images, one folder per class
     #   data/images/stored/<class_name>/*.jpg               -> same images (used for overlap statistics)
     #   data/labels/stored/<class_name>/*.txt               -> YOLO-format annotations
     base_dir = Path(__file__).resolve().parent.parent
     stored_dataset_dir = base_dir / "data" / "images" / "stored"
     stored_labels_dir = base_dir / "data" / "labels" / "stored"
+
+    if not stored_labels_dir.exists():
+        print("⚠️ No labels found in data/labels/stored: running the optional auto-labeling step 🖥️...")
+        subprocess.run(["python3", "labeling_raw_data.py"], check=True)
 
     if not stored_dataset_dir.exists() or not stored_labels_dir.exists():
         sys.exit(
@@ -32,10 +37,10 @@ def main():
     k_folds = 5  # Number of folds for k-fold CV
     copy_paste_augm = True  # Whether to perform copy-paste augmentation (True/False)
     data_balancing = True
-    use_rfs_custom_method = True  # True=Custom RFS allocation, False=Bin-based allocation
+    use_rfs_custom_method = False  # True=Custom RFS baseline (image-level), False=proposed bin-based allocation
     use_oversampling = False  # Keep False to run synthetic generation for both methods
-    vanilla = True  # Use vanilla copy-paste augmentation (fixed overlap threshold) 
-    adaptive_overlap_threshold = False  # Use class-specific overlap thresholds computed from stored data
+    vanilla = False  # Use vanilla copy-paste augmentation (fixed overlap threshold) 
+    adaptive_overlap_threshold = True  # Use class-specific overlap thresholds computed from stored data
     all_no_db_sych = True  # Use synchronized augmentation without databalancing
     fine_tuning = False
     use_image_weights = True # use image weights during training, based on the number of objects in the image (more objects = higher weight)

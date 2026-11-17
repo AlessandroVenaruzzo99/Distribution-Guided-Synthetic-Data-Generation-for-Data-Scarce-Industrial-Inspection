@@ -26,10 +26,10 @@ base_dir = Path(__file__).resolve().parent.parent
 target_total_objects = 3000  # Number of  target objects per class
 R = 4  # Number of bins
 first_upper = 7  # Upper limit of first bin
-rand_backg_select = False  # Whether to use random background selection
+rand_backg_select = True  # Random Background Selection (RB) - Full configuration
 ARISE_AUGM = True  # Whether to use ARISE augmentation
 PRESERVS_HOLES = True  # Whether to preserve holes in the pasted objects
-synch_augmentation = True  # Enable synchronized augmentation for coherent object and background transformations
+synch_augmentation = False  # Enable synchronized augmentation for coherent object and background transformations
 
 # -----------------------------------------------
 # Adaptive Overlap Threshold Settings
@@ -84,8 +84,9 @@ else:
 
 # Object augmentation options (applied to cropped objects before pasting)
 # -----------------------------------------------
+# Default values = "Full" configuration (RB + BA + OV + FA + DC)
 OBJECT_AUGM_OPTIONS = {
-    'enabled': False,
+    'enabled': True,   # Foreground Augmentation (FA)
     'gaussian_blur': True,
     'gaussian_blur_kernel': 3,
     'scale_jitter': True,
@@ -107,8 +108,8 @@ OBJECT_AUGM_OPTIONS = {
 # -----------------------------------------------
 # Background Augmentation Options
 # -----------------------------------------------
-BACKGROUND_AUGM_OPTIONS = {
-    'flip': False,
+BACKGROUND_AUGM_OPTIONS = {   # Background Augmentation (BA)
+    'flip': True,
     'brightness': True,
     'brightness_range': (-30, 30),
     'contrast': True,
